@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace folea.HeadersToContextMiddleware.Implementations
 {
-    public class MultiHeaderHandlingMiddleware
+    public class MultiHeaderHandlerMiddleware
     {
-        public MultiHeaderConfigurationOption[] Options { get;  }
+        public MultiHeaderHandlerConfigurationOption[] Options { get;  }
 
         private readonly RequestDelegate next;
 
         
-        public MultiHeaderHandlingMiddleware(RequestDelegate next, MultiHeaderConfigurationOption[] pams)
+        public MultiHeaderHandlerMiddleware(RequestDelegate next, MultiHeaderHandlerConfigurationOption[] pams)
         {
             Options = pams;
             this.next = next;
@@ -31,8 +31,8 @@ namespace folea.HeadersToContextMiddleware.Implementations
             {
                 var option = Options[i];
 
-                if (string.IsNullOrEmpty(option.HeaderKey)) throw new MultiHeaderHandlingMiddlewareException("HeaderKey must have a value");
-                if (option.CreateIfNotExists && (option.ValueCreationMethodIfNull is null)) throw new MultiHeaderHandlingMiddlewareException("if ValueCreationMethodIfNull is true then ValueCreationMethodIfNull must have a value");
+                if (string.IsNullOrEmpty(option.HeaderKey)) throw new MultiHeaderHandlerMiddlewareException("HeaderKey must have a value");
+                if (option.CreateIfNotExists && (option.ValueCreationMethodIfNull is null)) throw new MultiHeaderHandlerMiddlewareException("if ValueCreationMethodIfNull is true then ValueCreationMethodIfNull must have a value");
 
                 var headerValue = context.Request.Headers[option.HeaderKey].FirstOrDefault();
 

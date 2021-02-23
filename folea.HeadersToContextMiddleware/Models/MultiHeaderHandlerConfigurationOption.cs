@@ -2,7 +2,7 @@
 
 namespace folea.HeadersToContextMiddleware.Models
 {
-    public class MultiHeaderConfigurationOption
+    public class MultiHeaderHandlerConfigurationOption
     {
         /// <summary>
         /// The header we will be looking for, example: request-id
@@ -29,7 +29,7 @@ namespace folea.HeadersToContextMiddleware.Models
         /// </summary>
         public bool IsTraceId { get; set; }
 
-        public MultiHeaderConfigurationOption(string headerKey,
+        public MultiHeaderHandlerConfigurationOption(string headerKey,
                                                 bool isTraceId = false,
                                                 bool sendInResponse = false, 
                                                 bool createIfNotExists = false, 
